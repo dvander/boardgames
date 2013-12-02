@@ -1,0 +1,16 @@
+# vim: set sts=2 ts=8 sw=2 tw=99 et ft=python:
+builder.DetectCompilers()
+builder.compiler.cflags += [
+  '-Wall',
+  '-Werror',
+  '-ggdb3',
+  '-O3'
+]
+
+program = builder.compiler.Program('dotsolver')
+program.sources += [
+  'board.cpp',
+  'main.cpp',
+  'uct.cpp'
+]
+builder.Add(program)
