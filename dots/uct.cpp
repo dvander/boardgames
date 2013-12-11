@@ -39,7 +39,7 @@ UCT::UCT(const Board *board, unsigned maxnodes, unsigned maturity)
   first_node_ = (Node *)malloc(sizeof(Node) * maxnodes);
   last_node_ = first_node_ + maxnodes;
   cursor_ = first_node_;
-  rand_.seed(10505050); //time(NULL));
+  rand_.seed(time(NULL));
 }
 
 UCT::~UCT()
