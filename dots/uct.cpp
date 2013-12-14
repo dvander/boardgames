@@ -2,13 +2,14 @@
 #include "uct.h"
 #include <math.h>
 #include <time.h>
+#include <stdlib.h>
 
 using namespace dts;
 
 Node *
 Node::findBestChild()
 {
-  double coeff = 20 * log10(visits);
+  double coeff = sqrt(2) * log(visits);
   Node *best = &children[0];
   double best_score = best->ucb(coeff);
 
@@ -39,7 +40,8 @@ UCT::UCT(const Board *board, unsigned maxnodes, unsigned maturity)
   first_node_ = (Node *)malloc(sizeof(Node) * maxnodes);
   last_node_ = first_node_ + maxnodes;
   cursor_ = first_node_;
-  rand_.seed(time(NULL));
+  printf("seed: %d\n", time(NULL));
+  rand_.seed(1386962552); //time(NULL)); //1386961588); //time(NULL));
 }
 
 UCT::~UCT()
@@ -147,9 +149,17 @@ UCT::run(unsigned *vertex)
   if (!expand(root, board_))
     return false;
 
-  for (unsigned i = 0; i < 500000; i++)
+  for (unsigned i = 0; i < 2000000; i++)
     run_to_playout(root);
 
+  double coeff = sqrt(2) * log(root->visits);
+  for (size_t i = 0; i < root->nchildren; i++) {
+    Node *child = &root->children[i];
+    printf("[%d] vertex=%d score=%f visits=%f\n", i,
+           child->vertex,
+           child->score,
+           child->visits);
+  }
   *vertex = root->findBestChild()->vertex;
   return true;
 }

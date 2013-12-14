@@ -84,8 +84,13 @@ int main(int argc, char **argv)
   }
 
   Board *board = Board::New(rows, cols);
-  UCT uct(board, 10000000, 200);
+  UCT uct(board, 10000000, 20);
   Player AI = Player_B;
+
+  // unsigned moves[] = { 95,193,67,89,143,13,99,147,153,83,77,133,5,113,35,221,7,157,39,205,185,27,171,55,63,17,45,57,161,87,183,107,135,159,213,47,195,119,217,123,189,101,203,219,125,1,105,75,179,209,3,11,165,215,59,9,65,37,151,211,127,141,177,163,149 };
+  // for (size_t i = 0; i < sizeof(moves) / sizeof(*moves); i++) {
+  //   board->playAt(moves[i]);
+  // }
 
   while (!board->game_over()) {
     Draw(board);
@@ -95,6 +100,15 @@ int main(int argc, char **argv)
       Point p1, p2;
       char buffer[32];
       char row_char1, row_char2;
+
+      // if (fgets(buffer, sizeof(buffer), stdin) != buffer) {
+      //   printf("Exiting.\n");
+      //   exit(0);
+      // }
+      // if (sscanf(buffer, "%u", &vertex) != 1) {
+      //   printf("Invalid input.\n");
+      //   exit(0);
+      // }
 
       if (board->player() == Player_A)
         printf("Player A ");
@@ -136,9 +150,12 @@ int main(int argc, char **argv)
         printf("UCT failed\n");
         exit(1);
       }
+      break;
     }
 
     board->playAt(vertex);
+    Draw(board);
+    exit(0);
   }
 
   Player winner = board->winner();
