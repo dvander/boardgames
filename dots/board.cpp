@@ -3,6 +3,7 @@
 #include <new>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 using namespace dts;
 
@@ -34,6 +35,8 @@ Board::New(unsigned dot_rows, unsigned dot_cols)
   Board *board = (Board *)calloc(1, bytes);
   board->rows_ = rows;
   board->cols_ = cols;
+  board->total_moves_ = (dot_rows * (dot_cols - 1)) +
+                        (dot_cols * (dot_rows - 1));
   new (board) Board();
 
   // Visually, grids look like this:
@@ -215,5 +218,7 @@ Board::playAt(unsigned vertex)
   if (old_score == scores_[current_player_]) {
     current_player_ = Opponent(current_player_);
   }
+
+  //printf("%d\n", vertex);
 }
 

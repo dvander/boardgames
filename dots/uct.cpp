@@ -84,6 +84,8 @@ UCT::playout(Board *shadow)
   while ((winner = shadow->winner()) == Player_None) {
     if (shadow->game_over())
       break;
+    if (shadow->move_count() >= 60)
+      return shadow->estimate();
 
     unsigned moves = shadow->freeVertices();
     unsigned rand_int = rand_.randInt() & 0x7FFFFFFF;
@@ -149,7 +151,7 @@ UCT::run(unsigned *vertex)
   if (!expand(root, board_))
     return false;
 
-  for (unsigned i = 0; i < 2000000; i++)
+  for (unsigned i = 0; i < 200000; i++)
     run_to_playout(root);
 
   double coeff = sqrt(2) * log(root->visits);

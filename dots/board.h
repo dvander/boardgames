@@ -169,6 +169,16 @@ class Board
     }
     return Player_None;
   }
+  Player estimate() const {
+    if (score(Player_A) > score(Player_B))
+      return Player_A;
+    if (score(Player_A) < score(Player_B))
+      return Player_B;
+    return Player_None;
+  }
+  unsigned move_count() const {
+    return total_moves_ - empty_count_;
+  }
   unsigned score(Player player) const {
     assert(player == Player_A || player == Player_B);
     return scores_[player];
@@ -241,6 +251,7 @@ class Board
   Player current_player_;
   unsigned scores_[Players_Total];
   unsigned capturable_;
+  unsigned total_moves_;
 };
 
 } // namespace dts
