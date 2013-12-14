@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="robots" content="noindex">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Dots!</title>
+ <script src="board.js"></script>
+ <script src="uct.js"></script>
+ <script src="mersenne-twister.js"></script>
+ <link href="bootstrap-3.0.3/css/bootstrap.min.css" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
+ <script src="ui.js"></script>
+</head>
+<body onload="StartGame()">
+ <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+ </div>
+ <div class="container">
+  <h2>Dots</h2>
+  <hr>
+  <canvas id="viewport" width="200" height="200">
+    Your browser does not support the HTML5 Canvas element.
+  </canvas>
+  <div>
+   Score:
+   <div class="scorebox" id="scoreboxA">
+   </div>
+   <div class="scorebox" id="scoreboxB">
+   </div>
+   <div id="playouts">
+   </div>
+  </div>
+  <hr>
+  <p id="hams">
+  </p>
+  <p>
+   Connect the dots to make squares. Every square is one point and gets you an extra turn.
+  </p>
+  <p>
+   <i>Source: <a href="https://github.com/dvander/boardgames">https://github.com/dvander/boardgames</a></i>
+  </p>
+ </div>
+</body>
+</html>

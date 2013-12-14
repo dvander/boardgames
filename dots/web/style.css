@@ -1,0 +1,31 @@
+body {
+  padding-top: 50px;
+}
+.ui = {
+  padding: 40px 15;px;
+}
+.scorebox {
+  -moz-border-radius: 15px;
+  border-radius: 10px;
+  border-width: 10px;
+  border: 3px solid;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 45px;
+  font-size: 18pt;
+  display: inline-block;
+}
+
+#scoreboxA, .scorebox {
+  border-color: #ff3300;
+  color: #ff3300;
+  font-weight: bold;
+}
+
+#scoreboxB, .scorebox {
+  border-color: #3366ff;
+  color: #3366ff;
+  font-weight: bold;
+}
