@@ -154,8 +154,8 @@ int main(int argc, char **argv)
     }
 
     board->playAt(vertex);
-    Draw(board);
-    exit(0);
+//    Draw(board);
+//    exit(0);
   }
 
   Player winner = board->winner();
